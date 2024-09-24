@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/Akshaya-Parthi/argocd.git
+    repoURL: https://github.com/Akshaya-Parthi/argocd-image-updater.git
     targetRevision: HEAD
     path: dev
   destination: 
