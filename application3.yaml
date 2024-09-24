@@ -27,7 +27,7 @@ spec:
           value: v1
   destination:
     server: https://kubernetes.default.svc
-    namespace: dev
+    namespace: dev-test
   syncPolicy:
     automated:
       prune: true
