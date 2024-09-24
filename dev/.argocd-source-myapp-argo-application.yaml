@@ -1,3 +1,0 @@
-kustomize:
-  images:
-  - docker.io/akshayaclops/nginx:v0.1.0
