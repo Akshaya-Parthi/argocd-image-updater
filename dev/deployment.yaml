@@ -13,7 +13,7 @@ spec:
         app: myapp
     spec:
       containers:
-      - name: apache
+      - name: nginx
         image: docker.io/akshayaclops/nginx:v0.1.0
         ports:
         - containerPort: 80
