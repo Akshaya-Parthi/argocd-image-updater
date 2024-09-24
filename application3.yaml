@@ -1,0 +1,40 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-app
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: "025066283147.dkr.ecr.us-east-1.amazonaws.com/my-app"
+    argocd-image-updater.argoproj.io/025066283147.dkr.ecr.us-east-1.amazonaws.com/my-app.tag: "v1"
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds            
+    argocd-image-updater.argoproj.io/git-branch: main                                          
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Akshaya-Parthi/argocd-image-updater.git
+    targetRevision: main
+    path: my-app-chart
+    helm:
+      parameters:
+        - name: "replicaCount"
+          value: "2"
+        - name: "image.repository"
+          value: my-app
+        - name: "image.tag"
+          value: v1
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
