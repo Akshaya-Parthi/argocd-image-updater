@@ -1,0 +1,14 @@
+helm:
+  parameters:
+  - name: replicaCount
+    value: "2"
+    forcestring: false
+  - name: image.repository
+    value: akshayaclops/nginx
+    forcestring: false
+  - name: image.tag
+    value: v0.5.2
+    forcestring: true
+  - name: image.name
+    value: akshayaclops/nginx
+    forcestring: true
