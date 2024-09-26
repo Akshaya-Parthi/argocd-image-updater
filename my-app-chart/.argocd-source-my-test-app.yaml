@@ -7,7 +7,7 @@ helm:
     value: 396608791503.dkr.ecr.us-east-1.amazonaws.com/my-test-app
     forcestring: false
   - name: image.tag
-    value: v2
+    value: v3
     forcestring: true
   - name: image.name
     value: 396608791503.dkr.ecr.us-east-1.amazonaws.com/my-test-app
