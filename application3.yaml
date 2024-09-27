@@ -1,13 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: my-app
+  name: my-test-app
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: "025066283147.dkr.ecr.us-east-1.amazonaws.com/my-app"
-    argocd-image-updater.argoproj.io/my-app.tag: v1
-    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds            
-    argocd-image-updater.argoproj.io/git-branch: main                                          
+    argocd-image-updater.argoproj.io/image-list: "my-image=396608791503.dkr.ecr.us-east-1.amazonaws.com/my-test-app"
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+    argocd-image-updater.argoproj.io/git-branch: main
+    argocd-image-updater.argoproj.io/my-image.update-strategy: "name"
+    argocd-image-updater.argoproj.io/my-image.tag-pattern: "^qa1\\..*"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -21,12 +22,12 @@ spec:
         - name: "replicaCount"
           value: "2"
         - name: "image.repository"
-          value: "025066283147.dkr.ecr.us-east-1.amazonaws.com/my-app"
+          value: "396608791503.dkr.ecr.us-east-1.amazonaws.com/my-test-app"
         - name: "image.tag"
-          value: v1
+          value: qa1.26092024
   destination:
     server: https://kubernetes.default.svc
-    namespace: dev-test
+    namespace: qa1
   syncPolicy:
     automated:
       prune: true
