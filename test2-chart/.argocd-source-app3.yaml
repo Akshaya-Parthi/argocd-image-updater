@@ -1,0 +1,14 @@
+helm:
+  parameters:
+  - name: image.repository
+    value: 396608791503.dkr.ecr.us-east-1.amazonaws.com/dev3
+    forcestring: false
+  - name: image.tag
+    value: v3.0.0
+    forcestring: true
+  - name: replicaCount
+    value: "1"
+    forcestring: false
+  - name: image.name
+    value: 396608791503.dkr.ecr.us-east-1.amazonaws.com/dev3
+    forcestring: true
