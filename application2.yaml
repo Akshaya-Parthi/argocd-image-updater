@@ -6,8 +6,8 @@ metadata:
   namespace: argocd
   annotations:
     argocd-image-updater.argoproj.io/image-list: akshayaclops/nginx:~v0.5.0
-    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds            #Setting git credential
-    argocd-image-updater.argoproj.io/git-branch: main                                          #git branch where your workflow exists
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds            
+    argocd-image-updater.argoproj.io/git-branch: main                                          
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
