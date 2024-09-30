@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: test-applications
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - appName: test-app1
+            imageRepo: 396608791503.dkr.ecr.us-east-1.amazonaws.com/my-test-app
+            imageTag: qa1.26092024
+            path: test-chart
+            targetRevision: main
+  template:
+    metadata:
+      name: "{{appName}}"
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: "{{appName}}-image=~{{imageRepo}}"
+        argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+        argocd-image-updater.argoproj.io/git-branch: main
+        argocd-image-updater.argoproj.io/update-strategy: "name"
+        argocd-image-updater.argoproj.io/tag-pattern: "^qa1\\..*"
+    spec:
+      project: default
+      source:
+        repoURL: "https://github.com/Akshaya-Parthi/argocd-image-updater.git"
+        targetRevision: "main"
+        path: "{{path}}"
+        helm:
+          parameters:
+            - name: "image.repository"
+              value: "{{imageRepo}}"
+            - name: "image.tag"
+              value: "{{imageTag}}"
+            - name: "replicaCount"
+              value: "1"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "dev"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
