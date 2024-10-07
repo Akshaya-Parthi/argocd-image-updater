@@ -1,0 +1,14 @@
+helm:
+  parameters:
+  - name: replicaCount
+    value: "2"
+    forcestring: false
+  - name: image.repository
+    value: 396608791503.dkr.ecr.us-east-1.amazonaws.com/my-test-app
+    forcestring: false
+  - name: image.tag
+    value: qa2.26092024
+    forcestring: true
+  - name: image.name
+    value: 396608791503.dkr.ecr.us-east-1.amazonaws.com/my-test-app
+    forcestring: true
