@@ -4,7 +4,7 @@ helm:
     value: 396608791503.dkr.ecr.us-east-1.amazonaws.com/dev2
     forcestring: false
   - name: image.tag
-    value: v2.0.0
+    value: v3.0.0
     forcestring: true
   - name: replicaCount
     value: "1"
