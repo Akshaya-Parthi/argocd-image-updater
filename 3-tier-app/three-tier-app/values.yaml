@@ -14,7 +14,7 @@ replicaCount: 1
 
 # Image configuration
 image:
-  repository: 407622020962.dkr.ecr.us-east-1.amazonaws.com/frontend
+  repository: 396608791503.dkr.ecr.us-east-1.amazonaws.com/dev1
   tag: latest
   pullPolicy: Always
   pullSecret: ecr-registry-secret
