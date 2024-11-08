@@ -1,0 +1,34 @@
+# Namespace for the application
+namespace: three-tier
+
+# Environment
+env: demo
+
+# Service Configuration
+service:
+  port: 3000
+  type: ClusterIP
+
+# Replica Count
+replicaCount: 1
+
+# Image configuration
+image:
+  repository: 407622020962.dkr.ecr.us-east-1.amazonaws.com/frontend
+  tag: latest
+  pullPolicy: Always
+  pullSecret: ecr-registry-secret
+
+# Environment variables
+envVars:
+  REACT_APP_BACKEND_URL: "http://backend.amanpathakdevops.study/api/tasks"
+
+# Ingress Configuration
+ingress:
+  host: backend.amanpathakdevops.study
+  scheme: internet-facing
+  targetType: ip
+  className: alb
+
+# Backend Service Port
+backendServicePort: 3500
