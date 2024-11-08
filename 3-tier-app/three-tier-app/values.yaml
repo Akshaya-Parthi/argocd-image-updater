@@ -32,3 +32,7 @@ ingress:
 
 # Backend Service Port
 backendServicePort: 3500
+
+serviceAccount:
+  create: true  # Set to true to create a service account
+  name: "three-tier-sa"      # Optional: specify a custom name
